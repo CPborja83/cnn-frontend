@@ -1,0 +1,255 @@
+/* ------------------------------------------- */
+/* Variables y Reset             */
+/* ------------------------------------------- */
+:root {
+  --color-principal: #00897b; /* Verde turquesa */
+  --color-secundario: #80cbc4; /* Turquesa claro */
+  --color-texto: #333;
+  --color-blanco: #fff;
+  --sombra-moderna: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --color-fondo: #f0f4f7;
+  --color-fondo-claro: #e0f2f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------- */
+/* Estilos Base                  */
+/* ------------------------------------------- */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--color-blanco);
+  border-radius: 12px;
+  box-shadow: var(--sombra-moderna);
+}
+
+.card {
+  background-color: var(--color-blanco);
+  border-radius: 8px;
+  box-shadow: var(--sombra-moderna);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h1, h2 {
+  color: var(--color-principal);
+  border-bottom: 2px solid var(--color-secundario);
+  padding-bottom: 5px;
+}
+
+h5 {
+    color: #333;
+}
+
+/* ------------------------------------------- */
+/* Navegación y Elementos UI       */
+/* ------------------------------------------- */
+/* Carrusel de Navegación */
+.carrucel-navegacion {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  background-color: var(--color-principal);
+  border-radius: 8px;
+  box-shadow: var(--sombra-moderna);
+}
+
+.carrucel-navegacion a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 150px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.2s;
+  text-align: center;
+}
+
+.carrucel-navegacion a:hover {
+  background-color: #00796b;
+  transform: translateY(-2px);
+}
+
+/* Formularios y Botones */
+.form-container, .button-container {
+  padding: 20px;
+  background-color: var(--color-fondo-claro);
+  border-radius: 8px;
+}
+
+form {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.btn, button {
+  padding: 12px 20px;
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn:hover, button:hover {
+  background-color: #00796b;
+}
+
+/* ------------------------------------------- */
+/* Tablas                   */
+/* ------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+th {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+}
+
+/* Estilos de botones de acción en tablas */
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336; /* Rojo */
+  color: white;
+}
+
+/* ------------------------------------------- */
+/* Estilos Específicos para Video y Canvas  */
+/* ------------------------------------------- */
+/*
+  CONTENEDOR DE LA CÁMARA:
+  Ocupa toda la pantalla con un fondo negro.
+  Usa flexbox para centrar el canvas dentro.
+*/
+#canvas-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/*
+  CANVAS DENTRO DEL CONTENEDOR:
+  La clave es 'object-fit: contain'.
+  Esto le dice al navegador que el canvas debe ajustarse al contenedor
+  manteniendo su relación de aspecto original (sin estirarse).
+  El espacio sobrante lo rellena el fondo negro del contenedor.
+*/
+#canvas-container canvas, #micanva {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#CartaMensaje {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 2em;
+  color: white;
+  background: rgba(0, 150, 136, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.control-voz {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ------------------------------------------- */
+/* Responsividad                  */
+/* ------------------------------------------- */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .carrucel-navegacion a {
+    min-width: 120px;
+    padding: 10px;
+  }
+  .form-container, .button-container {
+    padding: 15px;
+  }
+  .btn, button {
+    width: 100%;
+  }
+}
+
+/* Ajustes mínimos para el login */
+.card-title { margin-bottom: 12px; }
+.input-field input { margin-bottom: 0; }
+#msg { min-height: 1.2em; }

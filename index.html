@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Ingreso al Sistema</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- (Opcional) Materialize solo para estilos base de inputs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+</head>
+<body>
+
+  <div class="container" style="max-width:420px; margin-top:60px;">
+    <div class="card">
+      <div class="card-content">
+        <h5 class="card-title">Iniciar sesión</h5>
+
+        <form id="formLogin" autocomplete="on" novalidate>
+          <div class="input-field">
+            <input id="usuario" name="usuario" type="text" autocomplete="username" required>
+            <label for="usuario">Nombre de usuario</label>
+          </div>
+
+          <div class="input-field">
+            <input id="contrasena" name="contrasena" type="password" autocomplete="current-password" required>
+            <label for="contrasena">Contraseña</label>
+          </div>
+          <button id="btnLogin" class="btn waves-effect waves-light" type="button">Ingresar</button>
+          <p id="msg" class="red-text" style="margin-top:10px;"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- (Opcional) Materialize JS para labels flotantes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Tu lógica de login separada -->
+  <script defer src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="carrucel-navegacion" id="nav-carrucel"></div>
+    <div class="container">
+        <h1>Gestión de Usuarios</h1>
+        
+        <div class="card form-container">
+        <h2>Crear Nuevo Usuario</h2>
+        <form id="form-crear-usuario">
+            <label for="nombre-crear">Nombre de Usuario:</label>
+            <input type="text" id="nombre-crear" required>
+            
+            <label for="contrasena-crear">Contraseña:</label>
+            <input type="password" id="contrasena-crear" required>
+            
+            <label for="rol-crear">Rol:</label>
+            <select id="rol-crear" required>
+                <option value="Administrador">Administrador</option>
+                <option value="Usuario">Usuario</option>
+                <option value="Tecnico">Tecnico</option>
+                <option value="Tecnico2">Tecnico2</option>
+            </select>
+            
+            <label for="activo-crear">Estado:</label>
+            <select id="activo-crear" required>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+            
+            <button type="submit">Crear Usuario</button>
+        </form>        
+        </div>
+
+        <h2>Lista de Usuarios</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="lista-usuarios">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/usuarios.js"></script>
+
+</body>
+</html>

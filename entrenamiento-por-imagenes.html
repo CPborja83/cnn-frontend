@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Clasificador de Muestras Patológicas — Entrenamiento con Imagen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- p5 (igual que tu index) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+  <!-- ml5 (igual que tu index) -->
+  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+  <!-- TensorFlow (igual que tu index) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+  <!-- Iconos Google -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    a { margin-bottom: 5px; }
+    #micanva { width: 100%; }
+  </style>
+</head>
+<body>
+  <!-- Cabezera -->
+  <div class="row">
+    <div class="col s12">
+      <div class="card teal darken-1">
+        <div class="card-content black-text">
+          <h2 class="center-align white-text">CLASIFICIFICADOR DE IMAGES DE MICROSCOPIO</h2>
+          <p align="justify">
+            El proceso de analisis se logra por medio de inteligencia artificial, los datos de entrada corresponden a imagenes que luego de ser digitalizadas y correlacionadas a una determinada patologia representan los datos mostrados.
+            Permite que el proceso sea optimizado utilizando la tecnologia mas moderna.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-panel teal darken-1 center-align">
+    <h5 class="center-align white-text">RECONOCIMIENTO DE CELULAS CANCERIGENAS POR MICROSCOPIO</h5>
+  </div>
+
+  <div class="row z-depth-1 red lighten-2">
+    <div class="card z-depth-5">
+      <div class="col s12 darken-4 text-darken-2 center-align">
+
+        <table width="50" border="2">
+          <colgroup span="2" align="center" bgcolor="#edc0e8"></colgroup>
+          <tr>
+            <td width="60%"></td>
+            <td width="33%"></td>
+          </tr>
+
+          <tr>
+            <!-- IZQUIERDA: canvas/estado -->
+            <td width="33%">
+              <div id="micanva"></div>
+              <p id="Estado" class="grey-text text-darken-2" style="margin:8px 0 0">Cargando APP...</p>
+              <p id="NombreArchivo" class="grey-text text-darken-2" style="margin:4px 0 12px">Sin imagen.</p>
+            </td>
+
+            <!-- CENTRO: mensajes + controles -->
+            <td width="33%">
+              <div class="card #edc0e8 accent-4 center-align">
+                <span id="CartaMensaje" class="card-title">Cargando...</span>
+              </div>
+
+              <!-- Cargar imagen local (NUEVO) -->
+              <div class="section center-align">
+                <a id="SeleccionarImagenBoton" class="waves-effect waves-light btn-large blue">
+                  <i class="material-icons left">file_upload</i>Seleccionar Imagen
+                </a>
+                <input type="file" id="InputImagen" accept="image/*" style="display:none" />
+              </div>
+
+              <!-- Etiqueta por texto (igual que index) -->
+              <div class="input-field" style="margin-top:16px;">
+                <i class="material-icons prefix">add_circle_outline</i>
+                <input id="TextBox" type="text" maxlength="32">
+                <label for="TextBox">Nombre de etiqueta</label>
+                <div class="center-align" style="margin-top:8px;">
+                  <a id="TextBoxBoton" class="waves-effect waves-light btn-large">GUARDAR CON TEXTO</a>
+                </div>
+              </div>
+
+              <!-- Botones predefinidos (igual que index) -->
+              <div class="section center-align">
+                <h5 class="center-align">GUARDAR DATO CON BOTON</h5>
+                <div class="center-align">
+                  <a class="waves-effect waves-light btn BotonEntrenar">APOPTOSIS</a>
+                  <a class="waves-effect waves-light btn BotonEntrenar">NECROSIS</a>
+                  <a class="waves-effect waves-light btn BotonEntrenar">MITOCONDIAL</a>
+                  <a class="waves-effect waves-light btn BotonEntrenar">LECION DE MEMBRANA</a>
+                  <a class="waves-effect waves-light btn BotonEntrenar">CALULA CANCERIGENA</a>
+                  <a class="waves-effect waves-light btn BotonEntrenar">CARCINOMA</a>
+                  <a class="waves-effect waves-light btn BotonEntrenar">TEJIDO NORMAL</a>
+                </div>
+              </div>
+            </td>
+
+            <!-- DERECHA: operaciones del clasificador (igual que index) -->
+            <td width="33%">
+              <div class="section center-align">
+                <h5>Operaciones Neurona</h5>
+                <div class="center-align">
+                  <a id="CargarBoton" class="waves-effect waves-light btn-large">Cargar</a>
+                  <a id="SalvarBoton" class="waves-effect waves-light btn-large">Salvar</a>
+                  <a id="LimpiarBoton" class="waves-effect waves-light btn-large">Limpiar</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer teal darken-1">
+    <div class="container">
+      <h5 class="center-align">Creado por Christian Paul Borja</h5>
+      <h6 class="center-align">Derechos Reservados Tesis Universidad Maríano Gálvez de Guatemala.</h6>
+      <h4 class="center-align">Guatemala 2022</h4>
+    </div>
+  </footer>
+
+  <!-- Lógica -->
+  <script src="js/entrenamiento-por-imagenes.js"></script>
+  <!-- Materialize JS (labels flotantes) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.M && M.updateTextFields) M.updateTextFields();
+    });
+  </script>
+</body>
+</html>
