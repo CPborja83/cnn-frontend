@@ -1,7 +1,7 @@
 let CartaMensaje, EstadoP, NombreArchivoP;
 let modelo, knn;
 let modeloListo = false;
-const API_BASE = 'https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net';
+const API_BASE = '/api';
 
 // p5 image + canvas
 let imgActual = null;           // p5.Image

@@ -4,7 +4,7 @@ let intervaloClasificacion;
 
 let vozActivada = true, volumenVoz = 0.5, velocidadVoz = 1;
 let UltimoTexto = "";
-const API_BASE = 'https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net';
+const API_BASE = '/api';
 
 // Setup principal
 function setup() {

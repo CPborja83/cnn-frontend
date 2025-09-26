@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const eliminarUsuario = async (id) => {
     // Aquí va el fetch DELETE al puerto 4000
     try {
-        const response = await fetch(`https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net/usuarios/${id}`, {
+        const response = await fetch(`/api/usuarios/${id}`, {
             method: 'DELETE'
         });
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function cargarUsuarios() {
         tbodyUsuarios.innerHTML = ''; // Limpiar la tabla
         try {
-            const response = await fetch('https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net/usuarios');
+            const response = await fetch('/api/usuarios');
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error('Error al cargar la lista de usuarios: ' + errorText);
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activo = document.getElementById('activo-crear').value === 'true';
 
         try {
-            const response = await fetch('https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net/usuarios/crear', {
+            const response = await fetch('/api/usuarios/crear', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nombreUsuario, contrasena, rol, activo })

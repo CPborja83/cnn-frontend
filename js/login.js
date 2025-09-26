@@ -1,8 +1,7 @@
 // js/login.js
 (() => {
   // === Config ===
-const API_BASE = 'https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net';
-
+const API_BASE = '/api'; 
   // === Helpers DOM ===
   const $  = (sel) => document.querySelector(sel);
   const $$ = (sel) => Array.from(document.querySelectorAll(sel));

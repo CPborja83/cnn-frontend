@@ -1,6 +1,6 @@
 // sketch.js
 // === Auth helpers (JWT) ===
-const API_BASE = 'https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net';
+const API_BASE = '/api';
 
 function getToken() {
   return localStorage.getItem('token') || '';
