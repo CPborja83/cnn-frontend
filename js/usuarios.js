@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formCrear = document.getElementById('form-crear-usuario');
     const tbodyUsuarios = document.getElementById('lista-usuarios');
+    const API_BASE = 'https://guatepath-api-service-cparavh2h4ahhrhv.canadacentral-01.azurewebsites.net';
 
     const eliminarUsuario = async (id) => {
     // Aquí va el fetch DELETE al puerto 4000
     try {
-        const response = await fetch(`/api/usuarios/${id}`, {
+        const response = await fetch(`${API_BASE}/usuarios/${id}`, {
             method: 'DELETE'
         });
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function cargarUsuarios() {
         tbodyUsuarios.innerHTML = ''; // Limpiar la tabla
         try {
-            const response = await fetch('/api/usuarios');
+            const response = await fetch(`${API_BASE}/usuarios`);
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error('Error al cargar la lista de usuarios: ' + errorText);
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activo = document.getElementById('activo-crear').value === 'true';
 
         try {
-            const response = await fetch('/api/usuarios/crear', {
+            const response = await fetch(`${API_BASE}/usuarios/crear`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nombreUsuario, contrasena, rol, activo })
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para enviar la solicitud de modificación al backend
     async function modificarUsuario(id, nombreUsuario, rol, activo) {
         try {
-            const response = await fetch(`https://guatepath-api-service-cparavh2h4ahhrhv.azurewebsites.net/usuarios/modificar/${id}`, {
+            await fetch(`${API_BASE}/usuarios/modificar/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nombreUsuario, rol, activo })
